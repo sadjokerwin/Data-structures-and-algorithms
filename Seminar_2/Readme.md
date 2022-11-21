@@ -11,4 +11,7 @@ Task2:
 
 Task3:
     Reverse polish calculation
+
+Task4:
+    Sort a stack with only one additional stack
     
