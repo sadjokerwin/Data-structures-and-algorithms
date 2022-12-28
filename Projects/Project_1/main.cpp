@@ -1,6 +1,10 @@
 #include "LinkedTravelList.h"
 #include "LinkedTravelList.cpp"
 #include "TravelListNode.h"
+
+#include "QueueHelpers.cpp"
+#include "QueueHelpers.h"
+
 #include <list>
 
 // #include "TravelListNode.cpp"
@@ -24,36 +28,22 @@ void printJourneyRoute(LinkedTravelList *stations, list<string> &desiredLocation
     if (*iterDesired != stations->front())
     {
         pathLength = stations->findPathBetweenTwoCities(stations->front(), *iterDesired, workQueue);
-        for (int i = 0; i < pathLength; i++)
-        {
-            cout << workQueue.front() << endl;
-            workQueue.pop();
-        }
-        while (!workQueue.empty())
-            workQueue.pop();
+        printSome(workQueue, pathLength);
+        clear(workQueue);
+        workQueue.pop();
     }
     while (*iterDesired != desiredLocations.back())
     {
         pathLength = stations->findPathBetweenTwoCities(*--iterDesired, *++iterDesired, workQueue);
-        for (int i = 0; i < pathLength; i++)
-        {
-            cout << workQueue.front() << endl;
-            workQueue.pop();
-        }
-        while (!workQueue.empty())
-            workQueue.pop();
+        printSome(workQueue, pathLength);
+        clear(workQueue);
         iterDesired++;
     }
     if (*iterDesired != stations->back())
     {
         pathLength = stations->findPathBetweenTwoCities(*iterDesired, stations->back(), workQueue);
-        for (int i = 0; i < pathLength; i++)
-        {
-            cout << workQueue.front() << endl;
-            workQueue.pop();
-        }
-        while (!workQueue.empty())
-            workQueue.pop();
+        printSome(workQueue, pathLength);
+        clear(workQueue);
         cout << stations->back();
     }
     else
