@@ -1,0 +1,5 @@
+4
+TheatreBox 0 1 TheatreSouvenirs
+TheatreSouvenirs 0 2 Plates Bags
+Plates 1 DecorativePlate 0
+Bags 0 0

@@ -5,7 +5,7 @@ class BoxList
     private:
 
     public:
-        vector<BoxNode> mList;
+        vector<BoxNode*> mList;
 
         size_t getSize();
 
@@ -13,6 +13,10 @@ class BoxList
         void addSubBox(const string &boxName, const string &parent = "null");
         void addSouvenir(const string &boxName, const string &souvenir);
 
-        void pointlessBoxes() const;
+        bool pointlessBoxes() const;
         void printList();
+
+        void removeAllPointlessBoxes();
+
+        void removeAPointlessBox(BoxNode*& box);
 };

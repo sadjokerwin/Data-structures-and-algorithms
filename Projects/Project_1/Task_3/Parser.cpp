@@ -50,7 +50,7 @@ void Parser::parseLines( BoxList &boxes)
         getSubBoxes(boxes, workStr);
     }
 }
-void Parser::parseInitialBoxes( BoxList &boxes)
+void Parser::parseInitialBoxes(BoxList &boxes)
 {
     string numStr, workStr;
     vector<string> words;
