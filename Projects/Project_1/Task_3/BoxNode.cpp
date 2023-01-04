@@ -26,12 +26,23 @@ void BoxNode::print()
     {
         for (int i = 0; i < mSubBoxes.size(); i++)
         {
-            cout << mSubBoxes[i]->mName << " ";
+            if (mSubBoxes[i] != nullptr)
+            {
+                // cout << "vliza print za " << i << endl;
+                cout << mSubBoxes[i]->mName << " ";
+            }
         }
+        cout << endl;
     }
     else
-        cout << "There are no smaller boxes inside this boxes";
-    cout << endl <<endl;
+        cout << "There are no smaller boxes inside this boxes" << endl;
+    // cout << "gurmi";
+    // cout << "vliza za " << mName << endl;
+    // cout << boolalpha << hasBoxGotPointlessBoxes();
+    // cout << boolalpha << isBoxPointless();
+    // cout << boolalpha << mSubBoxes.empty();
+    cout << endl
+         << endl;
 }
 void BoxNode::setName(const string &name)
 {
@@ -51,4 +62,34 @@ void BoxNode::addSubBox(BoxNode *&subBox)
     toBeAdded = subBox;
     toBeAdded->mName = subBox->mName;
     mSubBoxes.push_back(toBeAdded);
+}
+bool BoxNode::isBoxPointless() const
+{
+    return mSouvenirs.empty();
+}
+bool BoxNode::hasBoxGotPointlessBoxes() const
+{
+    if (mSubBoxes.empty())
+    {
+        if (isBoxPointless())
+            return true;
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < mSubBoxes.size(); i++)
+        {
+            // cout << "vliza za " << mSubBoxes[i]->mName;
+            if (mSubBoxes[i] == nullptr)
+                continue;
+                if (mSubBoxes[i]->isBoxPointless())
+                {
+                    // cout << "vliza za " << mSubBoxes[i]->mName;
+                    // cout << mSubBoxes[i]->isBoxPointless();
+                    return true;
+                }
+        }
+        return false;
+    }
+    // return false;
 }

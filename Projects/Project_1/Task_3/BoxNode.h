@@ -6,11 +6,12 @@ using namespace std;
 class BoxNode
 {
 private:
-    string mName;
-    vector<string> mSouvenirs;
-    vector<BoxNode*> mSubBoxes;
+    
 
 public:
+    string mName;
+    vector<string> mSouvenirs;
+    vector<BoxNode *> mSubBoxes;
     BoxNode();
     BoxNode(const string& name , vector<string> &souvenirs, vector<BoxNode *> &subBoxes);
 
@@ -21,5 +22,8 @@ public:
 
     void addSouvenir(const string &souvenir);
     void addSubBox(BoxNode *&subBox);
+
+    bool isBoxPointless() const;
+    bool hasBoxGotPointlessBoxes() const;
 
 };

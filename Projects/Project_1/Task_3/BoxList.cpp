@@ -68,22 +68,23 @@ void BoxList::addSouvenir(const string &boxName, const string &souvenir)
 }
 bool BoxList::pointlessBoxes() const
 {
+    int counter = 0;
     for (int i = 0; i < mList.size(); i++)
     {
         if (mList[i] == nullptr)
-            return false;
-        else if (mList[i]->hasBoxGotPointlessBoxes())
+        {
+        }
+        else if(mList[i]->hasBoxGotPointlessBoxes())
         {
             cout << mList[i]->mName;
-            return true;
+            counter++;
         }
-        else
-            return false;
+
     }
+    return counter != 0;
 }
 void BoxList::printList()
 {
-
     for (int i = 0; i < mList.size(); i++)
     {
         if (mList[i] != nullptr)
@@ -105,7 +106,6 @@ void BoxList::removeAPointlessBox(BoxNode *&box)
 {
     if (box->hasBoxGotPointlessBoxes() && box != nullptr)
     {
-        cout << "YESSS za " << box->mName << endl;
         if (box->mSouvenirs.empty() && box->mSubBoxes.empty())
         {
             for (int k = 0; k < mList.size(); k++)
@@ -114,10 +114,9 @@ void BoxList::removeAPointlessBox(BoxNode *&box)
                 {
                     if (box->mName == mList[k]->mName)
                     {
-                        cout << "vliza01 za " << box->mName;
                         // mList.erase(mList.begin() + k);
                         // cout << mList[k]->mName << endl;
-                        // delete mList[k];
+                        delete mList[k];
                         mList[k] = nullptr;
                         return;
                     }
@@ -130,24 +129,26 @@ void BoxList::removeAPointlessBox(BoxNode *&box)
             {
                 if (box->mSubBoxes[i]->isBoxPointless())
                 {
-                    cout << "vliza za " << box->mSubBoxes[i]->mName << endl;
                     if (box->mSubBoxes[i]->mSubBoxes.empty())
                     {
-                        cout << "vliza1 za " << box->mSubBoxes[i]->mName << endl;
                         for (int k = 0; k < mList.size(); k++)
                         {
                             if (mList[k] != nullptr)
                             {
                                 if (box->mSubBoxes[i]->mName == mList[k]->mName)
                                 {
-                                    mList.erase(mList.begin() + k);
+                                    mList[k] = nullptr;
                                 }
+                            }
+                            else
+                            {
+                                box->mSubBoxes[i] = nullptr;
+                                return;
                             }
                         }
                         delete box->mSubBoxes[i];
                         return;
 
-                        // box->mSubBoxes.erase(box->mSubBoxes.begin() + i);}
                     }
                     else
                     {
@@ -171,14 +172,9 @@ void BoxList::removeAPointlessBox(BoxNode *&box)
                         {
                             box->mSubBoxes.push_back(box->mSubBoxes[i]->mSubBoxes[k]);
                         }
-                        cout << "Trie " << box->mSubBoxes[i]->mName << endl;
-                        // box->mSubBoxes[i] = box->mSubBoxes[i]->mSubBoxes[0];
                         delete toBeDeleted;
 
                         box->mSubBoxes.erase(box->mSubBoxes.begin() + i);
-                        // box->mSubBoxes[i] = nullptr;
-
-                        // cout << box->mSubBoxes.size();
                         return;
                     }
                 }
