@@ -81,7 +81,6 @@ void LinkedTravelList::pushBack(const string name)
     {
         toBeAdded->numberInTheList = ++mNumOfElements;
         mHead = mTail = toBeAdded;
-        // isCityVisited[mNumOfElements - 1] == 0;
         isCityVisited.push_back(false);
     }
     else
@@ -89,7 +88,6 @@ void LinkedTravelList::pushBack(const string name)
         toBeAdded->numberInTheList = ++mNumOfElements;
         mTail->mNext = toBeAdded;
         mTail = toBeAdded;
-        // isCityVisited[mNumOfElements - 1] == 0;
         isCityVisited.push_back(false);
     }
 }
@@ -107,38 +105,21 @@ return mHead;
 }
 int LinkedTravelList::findPathBetweenTwoCities(const string &beginCity, const string &endCity, queue<string> &Q)
 {
-    // cout << "rekursiq za: " << beginCity << " i " << endCity << endl;
-    // cout << beginCity << findCityPointer(beginCity)->numberInTheList - 1 << endl;
-
     if (findCityPointer(beginCity)->numberInTheList < findCityPointer(endCity)->numberInTheList && isCityVisited[findCityPointer(beginCity)->numberInTheList - 1] == 0)
     {
         Q.push(beginCity);
         isCityVisited[findCityPointer(beginCity)->numberInTheList - 1] = true;
-        // cout <<beginCity <<" "<< boolalpha << isCityVisited[findCityPointer(beginCity)->numberInTheList - 1] << endl;
     }
-
-    // cout << beginCity;
     if (findCityPointer(beginCity)->numberInTheList > findCityPointer(endCity)->numberInTheList)
     {
-        // cout << "vliza MAX za: " << beginCity << endl
-        //  << endl;
         return 10000;
     }
     else if (findCityPointer(beginCity)->mNext->mName == endCity)
     {
-        // cout << "vliza 11 za: " << beginCity << endl
-        //  << endl;
-        // cout << endCity;
-        Q.push("#########################");
         return 1;
     }
     else if (findCityPointer(beginCity)->mSkip != nullptr && findCityPointer(beginCity)->mSkip->mName == endCity)
     {
-        // cout << "vliza 22 za: " << beginCity << endl;
-        // cout << findCityPointer(beginCity)->mSkip->mName << " i " << endCity << endl<<endl;
-        // cout << endCity;
-        Q.push("#########################");
-
         return 1;
     }
     else

@@ -7,7 +7,6 @@
 
 #include <list>
 
-// #include "TravelListNode.cpp"
 LinkedTravelList *initiateList(const int &numOfStations, list<string> &stations)
 {
     list<string>::iterator iter;
@@ -30,7 +29,6 @@ void printJourneyRoute(LinkedTravelList *stations, list<string> &desiredLocation
         pathLength = stations->findPathBetweenTwoCities(stations->front(), *iterDesired, workQueue);
         printSome(workQueue, pathLength);
         clear(workQueue);
-        workQueue.pop();
     }
     while (*iterDesired != desiredLocations.back())
     {
@@ -52,14 +50,6 @@ void printJourneyRoute(LinkedTravelList *stations, list<string> &desiredLocation
 using namespace std;
 int main()
 {
-    LinkedTravelList *x = new LinkedTravelList();
-    x->pushBack("ivan");
-    x->pushBack("petkana");
-    x->pushBack("dragan");
-    // TravelListNode *z = new TravelListNode("ragun");
-    // z->print();
-    // TravelListNode *y = new TravelListNode("dragan", new TravelListNode("conko", new TravelListNode("yomov", new TravelListNode())));
-    // x->print();
     list<string> cityList;
     cityList.push_back("Sofia");
     cityList.push_back("Pazardzhik");
@@ -78,29 +68,13 @@ int main()
     z->addSkipStation("Dimitrovgrad", "NovaZagora");
     z->addSkipStation("StaraZagora", "Yambol");
     z->addSkipStation("NovaZagora", "Burgas");
-    // z->print();
     queue<string> result;
     list<string> locationList;
 
-    // locationList.push_back("Plovdiv");
-    // locationList.push_back("StaraZagora");
-    // locationList.push_back("Yambol");
-
-    locationList.push_back("Sofia");
-    locationList.push_back("Dimitrovgrad");
-    locationList.push_back("Karnobat");
-    locationList.push_back("Burgas");
-
-    // locationList.push_back("Yambol");
-    // locationList.push_back("Burgas");
+    locationList.push_back("Plovdiv");
+    locationList.push_back("StaraZagora");
+    locationList.push_back("Yambol");
 
     printJourneyRoute(z, locationList);
-    // cout << z->findPathBetweenTwoCities("Plovdiv", "StaraZagora", result) << endl;
-    // while(!result.empty())
-    // {
-    //     cout << result.front() << endl;
-    //     result.pop();
-    // }
-
     return 0;
 }

@@ -9,7 +9,6 @@ struct TravelListNode
     TravelListNode *mNext;
     TravelListNode *mSkip;
     size_t numberInTheList;
-    // vector<ListNode *> mShortcuts;
     TravelListNode(const string &name = "null", TravelListNode *next = nullptr, TravelListNode *skip = nullptr, const size_t &num = 0) : mName{name}, mNext{next}, mSkip{skip}, numberInTheList{num} {}
 
 public:
