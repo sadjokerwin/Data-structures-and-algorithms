@@ -12,7 +12,7 @@ int main()
     size_t counter = 0;
     while (boxes.pointlessBoxes())
     {
-        counter++;
+        // counter++;
         boxes.removeAllPointlessBoxes();
     }
 

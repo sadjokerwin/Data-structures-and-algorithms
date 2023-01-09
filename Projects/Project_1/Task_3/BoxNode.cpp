@@ -28,7 +28,6 @@ void BoxNode::print()
         {
             if (mSubBoxes[i] != nullptr)
             {
-                // cout << "vliza print za " << i << endl;
                 cout << mSubBoxes[i]->mName << " ";
             }
         }
@@ -36,11 +35,7 @@ void BoxNode::print()
     }
     else
         cout << "There are no smaller boxes inside this boxes" << endl;
-    // cout << "gurmi";
-    // cout << "vliza za " << mName << endl;
-    // cout << boolalpha << hasBoxGotPointlessBoxes();
-    // cout << boolalpha << isBoxPointless();
-    // cout << boolalpha << mSubBoxes.empty();
+   
     cout << endl
          << endl;
 }
@@ -79,17 +74,13 @@ bool BoxNode::hasBoxGotPointlessBoxes() const
     {
         for (int i = 0; i < mSubBoxes.size(); i++)
         {
-            // cout << "vliza za " << mSubBoxes[i]->mName;
             if (mSubBoxes[i] == nullptr)
                 continue;
                 if (mSubBoxes[i]->isBoxPointless())
                 {
-                    // cout << "vliza za " << mSubBoxes[i]->mName;
-                    // cout << mSubBoxes[i]->isBoxPointless();
                     return true;
                 }
         }
         return false;
     }
-    // return false;
 }
